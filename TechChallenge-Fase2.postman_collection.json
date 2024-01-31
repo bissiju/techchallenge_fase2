@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "55690929-7a33-414a-8d80-10210d4f95be",
+		"name": "Tech Challenge - Fase 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3007809"
+	},
+	"item": [
+		{
+			"name": "Add Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"34192242060\",\n    \"name\" : \"Cliente\",\n    \"email\" : \"cliente@email.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"34192242060\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/customer/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"customer",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Drinks\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/category/{{variavel_categoryId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"category",
+						"{{variavel_categoryId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Triplo X-Burguer\",\n    \"categoryId\": \"{{variavel_categoryId}}\",\n    \"price\": 39,\n    \"description\": \"Pão de brioche, hamburger 200g, queijo cheddar e bacon.\",\n    \"image\": \"https://picsum.photos/200/300\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/product/{{variavel_productId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"product",
+						"{{variavel_productId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Init Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\": \"{{variavel_customerId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/order/init",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"init"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Order Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"{{variavel_productId}}\",\n    \"quantity\": 1,\n    \"note\": \"Sem maionese, por gentileza.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/order/{{variavel_orderId}}/add_item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"{{variavel_orderId}}",
+						"add_item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process Order - Checkout Pending",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/order/process/{{variavel_orderId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"process",
+						"{{variavel_orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process Payment - Checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"invoiceId\": \"{{variavel_invoiceId}}\",\n    \"isPaid\": true,\n    \"paymentValue\": 39,\n    \"payment_method\": \"qrCode_mercadoPago\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:31000/api/payment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"payment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Customer Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/?customerId={{variavel_customerId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						""
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "{{variavel_customerId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Payment Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/{{variavel_orderId}}/payment_status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"{{variavel_orderId}}",
+						"payment_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Queue Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/queue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"queue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order Status - Prepare",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/prepare/{{variavel_orderId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"prepare",
+						"{{variavel_orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order Status - Complete",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/complete/{{variavel_orderId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"complete",
+						"{{variavel_orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order Status - Delivery",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:31000/api/order/delivery/{{variavel_orderId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "31000",
+					"path": [
+						"api",
+						"order",
+						"delivery",
+						"{{variavel_orderId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techchallenge-fase2-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techchallenge-fase2-api
+  template:
+    metadata:
+      labels:
+        app: techchallenge-fase2-api
+    spec:
+      containers:
+      - name: techchallenge-fase2-api-container
+        image: techchallenge-fase2:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 512Mi
+          requests:
+            cpu: 1000m
+            memory: 512Mi
+        env:
+          - name: DB_HOST
+            value: techchallenge-fase2-db-svc
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: techchallenge-fase2-db-secret
+                key: db_username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: techchallenge-fase2-db-secret
+                key: db_password
+          - name: DB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: techchallenge-fase2-db-secret
+                key: db_database

@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+    name: techchallenge-fase2-api-hpa
+spec:
+    scaleTargetRef:
+        kind: Deployment
+        name: techchallenge-fase2-api
+        apiVersion: apps/v1
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 30

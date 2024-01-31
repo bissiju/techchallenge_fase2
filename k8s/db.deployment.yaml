@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techchallenge-fase2-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techchallenge-fase2-db
+  template:
+    metadata:
+      labels:
+        app: techchallenge-fase2-db
+    spec:
+      containers:
+        - name: sql-db-container
+          image: mysql:8.1
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: techchallenge-fase2-db-secret
+                  key: db_database
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: techchallenge-fase2-db-secret
+                  key: db_username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: techchallenge-fase2-db-secret
+                  key: db_password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: techchallenge-fase2-db-secret
+                  key: db_root_password
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: techchallenge-fase2-db-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: techchallenge-fase2-db-persistent-storage
+          persistentVolumeClaim:
+            claimName: techchallenge-fase2-db-pvc
