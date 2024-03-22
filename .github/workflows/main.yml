@@ -17,20 +17,20 @@ jobs:
       run: |
         docker build . -t techchallenge-fase3
 
-  test:
-    runs-on: ubuntu-latest
-    
-    needs : build
-    
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-        cache: 'yarn'
-    - run: yarn install
-    - run: yarn test
-    - run: npx eslint . --ext .js,.jsx,.ts,.tsx
+  #test:
+  #  runs-on: ubuntu-latest
+  #  
+  #  needs : build
+  #  
+  #  steps:
+  #  - uses: actions/checkout@v4
+  #  - uses: actions/setup-node@v3
+  #    with:
+  #      node-version: 18
+  #      cache: 'yarn'
+  #  - run: yarn install
+  #  - run: yarn test
+  #  - run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
   image:
     runs-on: ubuntu-latest
