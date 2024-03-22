@@ -59,6 +59,7 @@ jobs:
       run: |
         cd k8s
         kubectl apply -f .
+        
 
     - name: Check status
       run: |
