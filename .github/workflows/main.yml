@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: alpine-latest
+    runs-on: docker://alpine:latest
 
     steps:
     - name: Checkout code
