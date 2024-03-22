@@ -7,7 +7,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   schema {
     attribute_data_type = "String"
-    name                = "custom_attribute"
+    name                = "CPF"
     required            = false
   }
   password_policy {
@@ -22,6 +22,9 @@ resource "aws_cognito_user_pool" "user_pool" {
 resource "aws_cognito_user_pool_client" "user_pool_client" {
   name = "user-pool-client"
   user_pool_id = aws_cognito_user_pool.user_pool.id
+  generate_secret = false
+  callback_urls = ["https://app-domain/callback"]
+  allowed_oauth_flows_user_pool_client = true
 }
 
 resource "aws_lambda_function" "lambda_function" {

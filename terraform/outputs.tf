@@ -9,3 +9,7 @@ output "rds_cluster_endpoint" {
 output "eks_cluster_endpoint" {
   value = aws_eks_cluster.cluster_fiap_techchallenge.endpoint
 }
+
+output "cognito_domain" {
+  value = aws_cognito_user_pool.user_pool.domain
+}

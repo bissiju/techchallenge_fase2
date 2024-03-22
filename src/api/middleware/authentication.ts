@@ -9,7 +9,7 @@ export default function authenticate(type: UserType) {
         try {
 
             if (!req.headers.authorization) {
-                return res.redirect('https://your-cognito-domain/login');
+                return res.redirect('https://cognito-domain/login');
             }
             
             const token = req?.headers?.authorization?.split(' ')[1] as string;
