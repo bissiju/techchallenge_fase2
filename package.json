@@ -16,6 +16,7 @@
     "test": "npx tsc && jest --silent=false"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.24.1",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
     "@jest/globals": "^29.7.0",
