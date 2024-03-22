@@ -287,18 +287,18 @@ orderRouter.get(
   async (req: Request<unknown, unknown, ListOrdersQuery>, res: Response) => {
     try {
       const { query } = req;
-      const { customerId } = req;
-      const { userType } = req
+      const { userType } = req;
+
+      const customerId = query.customerId as string;
 
       let status: Array<string> = [];
 
-      if (query.customerId && tipoUsuario === UserType.CUSTOMER && query.customerId !== customerId) {
+      if (query.customerId && userType === UserType.CUSTOMER && query.customerId !== customerId) {
         return res.status(401).json({
           error: "No permission",
         });
       }
-
-      const customerId = query.customerId as string;
+      
       if (query?.status && typeof query.status === "string") {
         status = query.status.split(",");
       }

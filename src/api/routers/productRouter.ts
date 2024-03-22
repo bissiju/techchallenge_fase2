@@ -3,6 +3,9 @@ import { Request, Response } from "express";
 
 import DBProductsRepository from "gateways/database/repository/productDatabaseRepository";
 import { ProductController } from "adapters/controllers/productController";
+import { UserType } from "~domain/repository/authenticationRepository";
+
+import authenticate from "../middleware/authentication";
 
 import { AddItemBody, AddItemParams } from "./schemas/orderRouter.schema";
 import {

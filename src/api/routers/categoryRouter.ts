@@ -3,6 +3,9 @@ import { Request, Response } from "express";
 
 import DBCategoriesRepository from "gateways/database/repository/categoryDatabaseRepository";
 import { CategoryController } from "adapters/controllers/categoryController";
+import { UserType } from "~domain/repository/authenticationRepository";
+
+import authenticate from "../middleware/authentication";
 
 import {
   CreateCategoryPayload,

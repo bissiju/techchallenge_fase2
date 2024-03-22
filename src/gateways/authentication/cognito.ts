@@ -39,7 +39,7 @@ export default class Authenticatior implements AuthenticationRepository {
     return payload.sub;
   }
 
-    async authUser(token: string, tipo: TipoUsuario): Promise<string> {
+    async authUser(token: string, tipo: UserType): Promise<string> {
     const decodedToken = jwt.decode(token) as DecodedToken;
 
     const PoolRegex = /([^/]+)$/;
@@ -50,15 +50,15 @@ export default class Authenticatior implements AuthenticationRepository {
     }
     const getPoolId = getPoolIdMatch[1];
 
-    if (tipo === TipoUsuario.ADMIN && getPoolId !== ADMIN_POOL_ID) {
+    if (tipo === UserType.ADMIN && getPoolId !== ADMIN_POOL_ID) {
       return throwError('NO_PERMISSION', 'No permission');
     }
 
-    if (tipo === TipoUsuario.ADMIN && getPoolId === ADMIN_POOL_ID) {
+    if (tipo === UserType.ADMIN && getPoolId === ADMIN_POOL_ID) {
       return await this.validateToken(ADMIN_POOL_ID, POOL_ADMIN_CLIENT_ID, token);
     }
 
-    if (tipo === TipoUsuario.CUSTOMER) {
+    if (tipo === UserType.CUSTOMER) {
       return await this.validateToken(getPoolId, getPoolId === CUSTOMER_POOL_ID ? POOL_CUSTOMER_CLIENT_ID : POOL_ADMIN_CLIENT_ID, token);
     }
 

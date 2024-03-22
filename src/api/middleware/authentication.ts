@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import Authenticatior from "./gateways/authentication/cognito";
-import { UserType } from "./domain/repository/authenticationRepository";
+import Authenticatior from "gateways/authentication/cognito";
+import { UserType } from "~domain/repository/authenticationRepository";
 
 
 export default function authenticate(type: UserType) {
@@ -11,7 +11,7 @@ export default function authenticate(type: UserType) {
             const authenticatior = new Authenticatior();
             const customerId = await authenticatior.authUser(token, type);
 
-            req.UserType = type;
+            req.userType = type;
             req.customerId = customerId;
             return next();
         } catch (error: any) {
