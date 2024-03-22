@@ -33,4 +33,5 @@ jobs:
     - name: Apply Kubernetes
       run: |
         cd k8s
+        kubectl proxy --port=8080
         kubectl apply -f .
