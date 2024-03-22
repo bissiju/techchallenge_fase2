@@ -58,8 +58,8 @@ describe('CategoryUseCase', () => {
       deletedAt: null,
       updatedAt: null
     }
-    const retornaCategory = await CategoryUseCase.retornaCategory(categoryRepositoryMock, categoryInput.id)
-    expect(retornaCategory).toEqual(categoryInput)
+    const viewCategory = await CategoryUseCase.viewCategory(categoryRepositoryMock, categoryInput.id)
+    expect(viewCategory).toEqual(categoryInput)
 
   });
 
