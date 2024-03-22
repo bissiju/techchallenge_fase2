@@ -7,6 +7,11 @@ import { UserType } from "~domain/repository/authenticationRepository";
 export default function authenticate(type: UserType) {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
+
+            if (!req.headers.authorization) {
+                return res.redirect('https://your-cognito-domain/login');
+            }
+            
             const token = req?.headers?.authorization?.split(' ')[1] as string;
             const authenticatior = new Authenticatior();
             const customerId = await authenticatior.authUser(token, type);

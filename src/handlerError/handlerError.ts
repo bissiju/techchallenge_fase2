@@ -6,6 +6,6 @@ export class CustomError extends Error {
     }
   }
 
-export default function throwError(codigo: string, message: string): never {
-    throw new CustomError(message, codigo);
+export default function throwError(code: string, message: string): never {
+    throw new CustomError(message, code);
 }

@@ -50,18 +50,20 @@ export default class Authenticatior implements AuthenticationRepository {
     }
     const getPoolId = getPoolIdMatch[1];
 
-    if (tipo === UserType.ADMIN && getPoolId !== ADMIN_POOL_ID) {
-      return throwError('NO_PERMISSION', 'No permission');
-    }
+    return `https://your-app-domain/callback?token=${token}`;
 
-    if (tipo === UserType.ADMIN && getPoolId === ADMIN_POOL_ID) {
-      return await this.validateToken(ADMIN_POOL_ID, POOL_ADMIN_CLIENT_ID, token);
-    }
+    // if (tipo === UserType.ADMIN && getPoolId !== ADMIN_POOL_ID) {
+    //   return throwError('NO_PERMISSION', 'No permission');
+    // }
 
-    if (tipo === UserType.CUSTOMER) {
-      return await this.validateToken(getPoolId, getPoolId === CUSTOMER_POOL_ID ? POOL_CUSTOMER_CLIENT_ID : POOL_ADMIN_CLIENT_ID, token);
-    }
+    // if (tipo === UserType.ADMIN && getPoolId === ADMIN_POOL_ID) {
+    //   return await this.validateToken(ADMIN_POOL_ID, POOL_ADMIN_CLIENT_ID, token);
+    // }
 
-    return throwError('NO_PERMISSION', 'No permission');
+    // if (tipo === UserType.CUSTOMER) {
+    //   return await this.validateToken(getPoolId, getPoolId === CUSTOMER_POOL_ID ? POOL_CUSTOMER_CLIENT_ID : POOL_ADMIN_CLIENT_ID, token);
+    // }
+
+    // return throwError('NO_PERMISSION', 'No permission');
   }
 }
