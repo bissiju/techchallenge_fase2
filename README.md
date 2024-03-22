@@ -1,12 +1,16 @@
-# Tech Challenge Fase 2 - 4SOAT - Pós Tech FIAP - Software Architecture
+# Tech Challenge Fase 3 - 4SOAT - Pós Tech FIAP - Software Architecture
 
 Grupo 42:
 Juliana Bissi Pires - RM 351921
 
 Repositório:
-https://github.com/bissiju/techchallenge_fase2
+https://github.com/bissiju/techchallenge_fase3
 
-Observação: A fim de praticar uma nova stack, não houve refatoração a partir da entrega da Fase 1, desenvolvida em PHP. Trata-se de um novo projeto.
+## Changelog Fase 3
+
+* Autenticação de usuário via JWT e AWS Cognito
+* Infraestrutura Serverless com Terraform: EKS, Lambda e RDS 
+* CI/CD com Github Actions
 
 ## Requisitos
 
