@@ -2,6 +2,7 @@ import { CategoryInput } from "../../src/domain/entities/types/CategoryType";
 import CategoryRepository from "../../src/domain/repository/categoryRepository";
 import CategoryUseCase from "../../src/domain/useCases/categoryUseCase";
 import CategoryRepositoryMock from "../mock/repository/categoryRepositoryMock";
+import {describe, expect, test} from '@jest/globals';
 
 
 describe('CategoryUseCase', () => {
