@@ -13,14 +13,30 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build and test
+    - name: Build
       run: |
         docker build . -t techchallenge-fase3
+
+  test:
+    runs-on: ubuntu-latest
+    name: Run test and lint
+    
+    needs : build
+    
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+    - run: yarn test
+    - run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
   image:
     runs-on: ubuntu-latest
 
-    needs: build
+    needs: test
 
     steps:
     - name: Checkout code
@@ -40,6 +56,19 @@ jobs:
         push: true
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/techchallenge-fase3:latest
+
+  test:
+    runs-on: ubuntu-latest
+    name: Run test and lint
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+    - run: yarn test
+    - run: npx eslint . --ext .js,.jsx,.ts,.tsx
           
   deploy:
     needs: image
