@@ -85,7 +85,7 @@ describe('CategoryUseCase', () => {
     await CategoryUseCase.createCategory(categoryRepositoryMock, categoryInput3)
 
 
-    const getCategory1 = await CategoryUseCase.listaCategories(categoryRepositoryMock)
+    const getCategory1 = await CategoryUseCase.listCategories(categoryRepositoryMock)
 
     expect(getCategory1).toHaveLength(3)
   });
