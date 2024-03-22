@@ -100,18 +100,18 @@ resource "aws_iam_policy_attachment" "eks_node_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
-/*resource "aws_eks_node_group" "node-group-fiap-techchallenge" {
+resource "aws_eks_node_group" "node-group-fiap-techchallenge" {
   cluster_name    = aws_eks_cluster.cluster_fiap_techchallenge.name
   node_group_name = "node-group-fiap-techchallenge"
   node_role_arn   = aws_iam_role.eks_role.arn
-  subnet_ids      = ["subnet-0817f7939dd6af29a", "subnet-0844f3208ed5552a4"]
+  subnet_ids      = ["subnet-0817f7939dd6af29a", "subnet-0844f3208ed5552a4", "subnet-0ffd4b38a32166b7b"]
 
   scaling_config {
     desired_size = 2
-    max_size     = 5
+    max_size     = 3
     min_size     = 1
   }
-}*/
+}
 
 resource "aws_eks_cluster" "cluster_fiap_techchallenge" {
   name     = "cluster-fiap-techchallenge"
@@ -119,7 +119,7 @@ resource "aws_eks_cluster" "cluster_fiap_techchallenge" {
   version  = "1.29"
 
   vpc_config {
-    subnet_ids = ["subnet-0817f7939dd6af29a", "subnet-0844f3208ed5552a4"]
+    subnet_ids = ["subnet-0817f7939dd6af29a", "subnet-0844f3208ed5552a4", "subnet-0ffd4b38a32166b7b"]
     security_group_ids = ["sg-034823223f020803a"]
   }
 }

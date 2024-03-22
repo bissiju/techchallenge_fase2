@@ -6,6 +6,9 @@ import OrderDatabaseRepository from "gateways/database/repository/orderDatabaseR
 import ProductsDatabaseRepository from "gateways/database/repository/productDatabaseRepository";
 import CheckoutProvider from "gateways/payment_service/checkoutRepository";
 import { OrderController } from "adapters/controllers/orderController";
+import { UserType } from "~domain/repository/authenticationRepository";
+
+import authenticate from "../middleware/authentication";
 
 import {
   AddItemBody,
@@ -39,6 +42,7 @@ const dbInvoiceRepository = new InvoiceDatabaseRepository();
 
 orderRouter.post(
   "/:id/add_item",
+  authenticate(UserType.CUSTOMER),
   validate(addItemSchema),
   async (
     req: Request<AddItemParams, AddItemBody>,
@@ -71,6 +75,7 @@ orderRouter.post(
 
 orderRouter.delete(
   "/:id/remove_item/:idItem",
+  authenticate(UserType.CUSTOMER),
   validate(removeItemSchema),
   async (req: Request<RemoveItemParams>, res: Response) => {
     try {
@@ -100,6 +105,7 @@ orderRouter.delete(
 
 orderRouter.post(
   "/init",
+  authenticate(UserType.CUSTOMER),
   validate(initOrderSchema),
   async (req: Request<unknown, InitOrderPayload>, res: Response) => {
     try {
@@ -158,6 +164,7 @@ orderRouter.patch(
 
 orderRouter.get(
   "/queue/",
+  authenticate(UserType.CUSTOMER),
   validate(listOrdersSchema),
   async (req: Request<unknown, unknown, ListOrdersQuery>, res: Response) => {
     try {
@@ -275,12 +282,22 @@ orderRouter.patch(
 
 orderRouter.get(
   "/",
+  authenticate(UserType.CUSTOMER),
   validate(listOrdersSchema),
   async (req: Request<unknown, unknown, ListOrdersQuery>, res: Response) => {
     try {
       const { query } = req;
+      const { customerId } = req;
+      const { userType } = req
 
       let status: Array<string> = [];
+
+      if (query.customerId && tipoUsuario === UserType.CUSTOMER && query.customerId !== customerId) {
+        return res.status(401).json({
+          error: "No permission",
+        });
+      }
+
       const customerId = query.customerId as string;
       if (query?.status && typeof query.status === "string") {
         status = query.status.split(",");
@@ -307,6 +324,7 @@ orderRouter.get(
 
 orderRouter.get(
   "/:id/payment_status",
+  authenticate(UserType.CUSTOMER),
   validate(paymentStatusSchema),
   async (req: Request<StatusOrderParams>, res: Response) => {
     try {

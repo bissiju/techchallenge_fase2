@@ -19,16 +19,16 @@ customerRouter.post("/",
     try {
       const customer = req.body;
 
-      const customerCreatedo = await CustomerController.createCustomer(dbCustomerRepository, customer);
+      const customerCreated = await CustomerController.createCustomer(dbCustomerRepository, customer);
       return res.status(201).json({
         status: "success",
-        message: customerCreatedo,
+        message: customerCreated,
       });
     } catch (err: any) {
-      if (err.message === "customer_duplicado") {
+      if (err.message === "customer_duplicated") {
         return res.status(400).json({
           status: "error",
-          message: "Email ou cpf já em uso!"
+          message: "Email or CPF already used."
         })
       }
       return res.status(500).json({
@@ -81,7 +81,7 @@ customerRouter.post("/search",
       }
       return res.status(404).json({
         status: "error",
-        message: "Usuário not found",
+        message: "Customer not found",
       });
 
     } catch (err: any) {

@@ -26,7 +26,7 @@ export default class CustomerUseCase {
       const customerExists = await CustomerUseCase.customerExists(customerRepository, customer.email, customer.cpf);
 
       if (customerExists) {
-        throw new Error("customer_duplicado");
+        throw new Error("customer_duplicated");
       }
 
     }

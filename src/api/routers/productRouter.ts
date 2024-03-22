@@ -61,6 +61,7 @@ productRouter.post("/",
 );
 
 productRouter.get("/",
+  authenticate(UserType.CUSTOMER),
   validate(ListProductSchema),
   async (
     req: Request<ListProductParams, unknown>,
@@ -92,6 +93,7 @@ productRouter.get("/",
 );
 
 productRouter.get("/:id",
+  authenticate(UserType.CUSTOMER),
   validate(ViewProductSchema),
   async (
     req: Request<ViewProductParams, unknown>,

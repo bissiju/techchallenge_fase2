@@ -46,6 +46,7 @@ categoryRouter.post("/",
 );
 
 categoryRouter.get("/",
+  authenticate(UserType.CUSTOMER),
   validate(ListCategorySchema),
   async (req: Request<unknown, ListCategoryPayload>, res: Response) => {
     try {
@@ -65,6 +66,7 @@ categoryRouter.get("/",
 );
 
 categoryRouter.get("/:id",
+  authenticate(UserType.CUSTOMER),
   validate(ViewCategorySchema),
   async (req: Request<ViewCategoryParams, unknown>, res: Response) => {
     try {
