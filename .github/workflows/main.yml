@@ -76,6 +76,8 @@ jobs:
         kubectl apply -f .
         
 
+
+
     - name: Check status
       run: |
         kubectl get pods
