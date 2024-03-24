@@ -75,9 +75,6 @@ jobs:
         cd k8s
         kubectl apply -f .
         
-
-
-
     - name: Check status
       run: |
         kubectl get pods
